@@ -9,7 +9,7 @@
         android:name="com.vhenri.mypy.ui.main.WelcomeFragment"
         android:label="WelcomeFragment" >
         <action
-            android:id="@+id/action_welcomeFragment_to_execFragment"
+            android:id="@+id/welcomeFragment_to_execFragment"
             app:destination="@id/execFragment" />
     </fragment>
     <fragment

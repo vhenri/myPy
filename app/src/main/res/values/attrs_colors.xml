@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="snakeColor" format="color"/>
+    <attr name="defaultTextColor" format="color"/>
+    <attr name="accentColor" format="color"/>
+    <item name="background_tint" type="color"/>
+</resources>

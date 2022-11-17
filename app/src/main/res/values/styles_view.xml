@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyPy.CardStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="strokeWidth">3dp</item>
+        <item name="strokeColor">?attr/accentColor</item>
+        <item name="cardBackgroundColor">?attr/colorPrimary</item>
+        <item name="shapeAppearance">@style/MyPy.MediumComponent</item>
+    </style>
+    <style name="MyPy.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+    <style name="MyPy.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+</resources>

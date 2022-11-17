@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyPy.H1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="android:textSize">16dp</item>> >
+        <item name="lineHeight">25dp</item>
+        <item name="fontFamily">@font/family_uav_osd_sans_mono</item>
+        <item name="android:textColor">?attr/defaultTextColor</item>
+    </style>
+    <style name="MyPy.Body" parent="TextAppearance.AppCompat.Body2">
+        <item name="android:textSize">12dp</item>
+        <item name="fontFamily">@font/family_uav_osd_sans_mono</item>
+        <item name="android:textColor">?attr/defaultTextColor</item>
+        <item name="lineHeight">23dp</item>
+    </style>
+</resources>
