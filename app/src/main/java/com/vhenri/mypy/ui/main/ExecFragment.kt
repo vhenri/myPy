@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -35,6 +36,7 @@ class ExecFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.inputCodeInner.requestFocus()
         viewModel.executeCode()
         initObservables()
     }
@@ -47,12 +49,8 @@ class ExecFragment : Fragment() {
                         if(it.commandString.isNullOrEmpty()){
                            clearInputBox()
                         }
-                        if(!it.executedCommandString.isNullOrBlank()){
-                            binding.inputText.text = it.executedCommandString
-                        }
-                        if(!it.executedResponse.isNullOrBlank()){
-                            binding.outputText.text = it.executedResponse
-                        }
+                        binding.inputText.text = it.executedCommandString
+                        binding.outputText.text = it.executedResponse
                     }
                 }
                 launch(){
@@ -60,8 +58,12 @@ class ExecFragment : Fragment() {
                         binding.execButton.isClickable = !isLoading
                         if (isLoading){
                             binding.execButton.text = "LOADING ..."
+                            binding.clearInButton.visibility = View.GONE
+                            binding.clearConsoleButton.visibility = View.GONE
                         } else {
                             binding.execButton.text = "EXECUTE"
+                            binding.clearInButton.visibility = View.VISIBLE
+                            binding.clearConsoleButton.visibility = View.VISIBLE
                         }
                     }
                 }
@@ -77,9 +79,18 @@ class ExecFragment : Fragment() {
         binding.execButton.setOnClickListener {
             viewModel.executeCode()
         }
+        binding.clearInButton.setOnClickListener {
+            clearInputBox()
+        }
+        binding.clearConsoleButton.setOnClickListener {
+            viewModel.clearConsoleText()
+        }
+        binding.inputCodeInner.doOnTextChanged(){ text, start, before, count ->  
+            viewModel.setInputText(text.toString())
+        }
     }
 
-    fun clearInputBox(){
+    private fun clearInputBox(){
         binding.inputCodeInner.text?.clear()
     }
 

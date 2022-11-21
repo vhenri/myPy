@@ -28,34 +28,53 @@ class MainViewModel @Inject constructor(private val replitDataRepository: Replit
     private val _navigation: MutableStateFlow<NavDirections?> = MutableStateFlow(null)
     val navigation = _navigation.asStateFlow()
 
-    fun executeCode(){
-        val commandString = uiState.value.commandString ?: "null"
-        _isLoading.update { true }
-        viewModelScope.launch {
-            replitDataRepository.executeCode(
-                null,
-                command = commandString
-            ).mapEither(
-                success = { response ->
-                    _uiState.update {
-                        UiState(
-                            commandString = null,
-                            executedCommandString = commandString,
-                            executedResponse = response?.result
-                        )
-                    }
-                },
-                failure = { exception ->
-                    _uiState.update {
-                        UiState(
-                            commandString = commandString,
-                            executedCommandString = commandString,
-                            executedResponse = "Oh no! Something went wrong. Try again?\n${exception.getUserExceptionMsg()} "
-                        )
-                    }
-                }
+    fun setInputText(text: String){
+        _uiState.update {
+            it.copy(
+                commandString = text
             )
-            _isLoading.update { false }
+        }
+    }
+
+    fun executeCode(){
+        val commandString = uiState.value.commandString
+        if (!commandString.isNullOrEmpty()) {
+            _isLoading.update { true }
+            viewModelScope.launch {
+                replitDataRepository.executeCode(
+                    null,
+                    command = commandString
+                ).mapEither(
+                    success = { response ->
+                        _uiState.update {
+                            UiState(
+                                commandString = null,
+                                executedCommandString = commandString,
+                                executedResponse = response?.result
+                            )
+                        }
+                    },
+                    failure = { exception ->
+                        _uiState.update {
+                            UiState(
+                                commandString = commandString,
+                                executedCommandString = commandString,
+                                executedResponse = "Oh no! Something went wrong. Try again?\n${exception.getUserExceptionMsg()} "
+                            )
+                        }
+                    }
+                )
+                _isLoading.update { false }
+            }
+        }
+    }
+
+    fun clearConsoleText(){
+        _uiState.update {
+            it.copy(
+                executedCommandString = null,
+                executedResponse = null
+            )
         }
     }
 
