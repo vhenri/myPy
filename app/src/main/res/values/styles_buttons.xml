@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="MyPy.PrimaryButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+    <style name="MyPy.PrimaryLargeButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="textAllCaps">false</item>
         <item name="android:letterSpacing">0.1</item>
         <item name="fontFamily">@font/family_pixel_splitter_bold</item>
@@ -13,5 +13,19 @@
         <item name="strokeColor">?attr/accentColor</item>
         <item name="shapeAppearance">@style/MyPy.SmallComponent</item>
         <item name="android:minHeight">60dp</item>
+    </style>
+
+    <style name="MyPy.PrimaryButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="textAllCaps">false</item>
+        <item name="android:letterSpacing">0.1</item>
+        <item name="fontFamily">@font/family_uav_osd_sans_mono</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:layout_marginVertical">10dp</item>
+        <item name="android:layout_marginHorizontal">10dp</item>
+        <item name="backgroundTint">?attr/colorPrimary</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="strokeColor">?attr/accentColor</item>
+        <item name="shapeAppearance">@style/MyPy.SmallComponent</item>
     </style>
 </resources>

@@ -17,5 +17,8 @@
         <item name="defaultTextColor">@color/light_cream</item>
         <item name="accentColor">@color/bright_orange</item>
         <item name="backgroundTint">@color/background_cream</item>
+
+        <item name="android:windowSplashScreenBackground">@color/bright_orange</item>
+
     </style>
 </resources>

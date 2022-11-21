@@ -1,16 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@drawable/paper_texture_unsplash"
+    android:backgroundTintMode="multiply"
+    android:backgroundTint="@color/background_cream">
 
-    <TextView
-        android:layout_width="match_parent"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/input_card"
+        style="@style/MyPy.CardStyle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="5dp"
+        android:paddingBottom="5dp"
+        app:cardElevation="1dp"
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="EXEC Screen"
-        />
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/chevron"
+            android:layout_width="11dp"
+            android:layout_height="11dp"
+            android:src="@drawable/icon_chevron"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/input_code_outer"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_code_outer"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/chevron"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="100dp"
+            android:maxHeight="150dp"
+            style="@style/MyPy.TextInput.Code">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_code_inner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/MyPy.EditTextStyle"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/exec_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/MyPy.PrimaryButton"
+        app:elevation="1dp"
+        android:layout_margin="5dp"
+        app:strokeWidth="3dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_card"
+        android:text="execute"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/last_executed_card"
+        style="@style/MyPy.CardStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="5dp"
+        app:cardElevation="1dp"
+        android:minHeight="500dp"
+        app:layout_constraintTop_toBottomOf="@id/exec_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:scrollbars="vertical"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/chevron_input"
+                android:layout_width="11dp"
+                android:layout_height="11dp"
+                android:src="@drawable/icon_chevron"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+            <TextView
+                android:id="@+id/input_text_header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="12dp"
+                style="@style/MyPy.Body"
+                app:layout_constraintStart_toEndOf="@id/chevron_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="Input:"
+                />
+            <TextView
+                android:id="@+id/input_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="5dp"
+                app:layout_constraintStart_toEndOf="@id/chevron_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_text_header"
+                android:textColor="?attr/defaultTextColor"
+                tools:text="x = 22 \nprint(n)"
+                />
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="15dp"
+                android:alpha="0.5"
+                app:layout_constraintTop_toBottomOf="@+id/input_text"
+                android:background="?attr/defaultTextColor"/>
+
+            <ImageView
+                android:id="@+id/chevron_output"
+                android:layout_width="11dp"
+                android:layout_height="11dp"
+                android:src="@drawable/icon_chevron"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider"/>
+            <TextView
+                android:id="@+id/output_text_header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                app:layout_constraintStart_toEndOf="@id/chevron_output"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/chevron_output"
+                app:layout_constraintBottom_toBottomOf="@id/chevron_output"
+                style="@style/MyPy.Body"
+                android:text="Output:"
+                />
+            <TextView
+                android:id="@+id/output_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="5dp"
+                app:layout_constraintStart_toEndOf="@id/chevron_output"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/output_text_header"
+                android:textColor="?attr/defaultTextColor"
+                tools:text="22"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
