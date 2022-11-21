@@ -6,3 +6,8 @@ import com.squareup.moshi.JsonClass
 data class ExecResponse(
     val result: String,
 )
+
+data class ExecRequest(
+    val language: String = "python",
+    val command: String
+)
