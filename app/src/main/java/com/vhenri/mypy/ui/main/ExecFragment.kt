@@ -37,6 +37,7 @@ class ExecFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.inputCodeInner.requestFocus()
+        viewModel.initInput()
         viewModel.executeCode()
         initObservables()
     }

@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 class MainViewModel @Inject constructor(private val replitDataRepository: ReplitDataRepository) : ViewModel() {
     private val _uiState: MutableStateFlow<UiState> = MutableStateFlow(
         UiState(
-            "x = 'Hello World!'\nprint(x)",
+            null,
             null,
             null,
         )
@@ -72,6 +72,16 @@ class MainViewModel @Inject constructor(private val replitDataRepository: Replit
     fun clearConsoleText(){
         _uiState.update {
             it.copy(
+                executedCommandString = null,
+                executedResponse = null
+            )
+        }
+    }
+
+    fun initInput(){
+        _uiState.update {
+            UiState(
+                commandString = "x = 'Hello World!'\nprint(x)",
                 executedCommandString = null,
                 executedResponse = null
             )
